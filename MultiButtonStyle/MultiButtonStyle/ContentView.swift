@@ -26,7 +26,12 @@ enum OvenState: String, ButtonState {
     case Disabled = "Disabled"
 }
 
-struct StateButton<: T ButtonState>: View {
+struct StateButton<T : ButtonState>: View {
+    
+    let states: [T]
+    @State var currentIndex = 0
+    @Binding var selectedState: T
+    
     var body: some View {
         
         Text("State Button")
@@ -35,16 +40,15 @@ struct StateButton<: T ButtonState>: View {
 
 struct ContentView: View {
     
-    let states: [T]
-    
+    @State private var selectedState: OvenState
     var body: some View {
         
-       StateButton()
+        StateButton(states: OvenState.allCases, selectedState: $selectedState)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(selectedState: .Default)
     }
 }
