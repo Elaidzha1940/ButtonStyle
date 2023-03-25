@@ -34,13 +34,18 @@ struct StateButton<T : ButtonState>: View {
     
     var body: some View {
         
-        Text("State Button")
+        Button {
+            // action
+        } label: {
+            Text(states[currentIndex].title)
+                .frame(maxWidth: 155)
+        }.buttonStyle(.borderedProminent)
     }
 }
 
 struct ContentView: View {
     
-    @State private var selectedState: OvenState
+    @State var selectedState: OvenState
     var body: some View {
         
         StateButton(states: OvenState.allCases, selectedState: $selectedState)
