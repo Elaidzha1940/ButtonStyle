@@ -7,14 +7,39 @@
 
 import SwiftUI
 
-struct ContentView: View {
+protocol ButtonState: CaseIterable {
+    
+    var title: String { get }
+}
+
+extension ButtonState where Self: RawRepresentable, RawValue == String {
+    
+    var title: String {
+        self.rawValue
+    }
+}
+
+enum OvenState: String, ButtonState {
+    
+    case Default = "Default"
+    case Pressed = "Pressed"
+    case Disabled = "Disabled"
+}
+
+struct StateButton<: T ButtonState>: View {
     var body: some View {
         
-        VStack {
-            
-           Text("hi")
-        }
-        .padding()
+        Text("State Button")
+    }
+}
+
+struct ContentView: View {
+    
+    let states: [T]
+    
+    var body: some View {
+        
+       StateButton()
     }
 }
 
