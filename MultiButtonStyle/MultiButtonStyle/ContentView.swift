@@ -36,6 +36,8 @@ struct StateButton<T : ButtonState>: View {
         
         Button {
             // action
+            currentIndex = currentIndex < states.count - 1 ? currentIndex + 1 : 0
+            selectedState
         } label: {
             Text(states[currentIndex].title)
                 .frame(maxWidth: 155)

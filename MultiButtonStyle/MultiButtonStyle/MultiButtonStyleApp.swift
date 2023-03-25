@@ -11,7 +11,7 @@ import SwiftUI
 struct MultiButtonStyleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(selectedState: .Default))
+            ContentView(selectedState: .Default)
         }
     }
 }
